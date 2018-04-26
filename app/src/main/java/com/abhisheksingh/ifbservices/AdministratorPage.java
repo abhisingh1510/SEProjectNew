@@ -65,34 +65,39 @@ public class AdministratorPage extends AppCompatActivity {
         billing.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 try {
-                    int n=1;//length/no. of query
+                    int n=3;//length/no. of query
                     int id[]=new int[n];//will store id of query
                     String tech[]=new String[n];//Plumer, etc. Technician type
                     int rate[]=new int[n];
                     int st[]=new int[n];//Start time
                     int end[]=new int[n];//end time
                     int cost[]=new int[n];
-
-                    id[0]=1;
-                    tech[0]="Plumber";
-                    rate[0]=1000;
-                    st[0]=1;
-                    end[0]=1000;
-                    cost[0]=10000;
-
-                    String text="Dear Sir/Ma'am\\n Thank you for using IFB Services. Please find the payment details below-\\n";
-                    text+="Id.\\t Technican\\t Start \\t End \\t Rate \\t Cost";
-                    for(int i=0;i<n;i++)
-                    {
-                        text+=Integer.toString(id[0])+"\\t"+tech[0]+"\\t"+Integer.toString(st[i])+"\\t";
-                        text+=Integer.toString(end[i])+"\\t"+Integer.toString(rate[i])+"\\t"+Integer.toString(cost[i])+"\\n";
+                    int sum=0;
+                    for(int i=0;i<n;i++){
+                    id[i]=1;
+                    tech[i]="Plumber";
+                    rate[i]=1000;
+                    st[i]=1;
+                    end[i]=1000;
+                    cost[i]=10000;
+                    sum+=cost[i];
                     }
 
+
+                    String text="Dear Sir/Ma'am\n Thank you for using IFB Services. Please find the payment details below-\n";
+                    text+="Id.\t Technican\t Start \t End \t Rate \t Cost\n";
+                    for(int i=0;i<n;i++)
+                    {
+                        text+=Integer.toString(id[0])+"\t"+tech[0]+"\t"+Integer.toString(st[i])+"\t";
+                        text+=Integer.toString(end[i])+"\t"+Integer.toString(rate[i])+"\t"+Integer.toString(cost[i])+"\n";
+                    }
+                    text+="\n Hence, your total cost is equal to Rs"+Integer.toString(sum)+"\n\n Thanking You,\n IFB Admin.";
                     Intent i = new Intent(Intent.ACTION_SEND);
                     i.setType("message/rfc822");
                     i.putExtra(Intent.EXTRA_EMAIL  , new String[]{"f20160081@hyderabad.bits-pilani.ac.in"});
                     i.putExtra(Intent.EXTRA_SUBJECT, "Bill of IFB Services");
                     i.putExtra(Intent.EXTRA_TEXT   , text);
+
                     try
                     {
                         startActivity(Intent.createChooser(i, "Send mail..."));
