@@ -24,7 +24,7 @@ public class FirstPage extends AppCompatActivity {
         Administrator.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
             {
-                startActivity(new Intent(FirstPage.this, AdministratorPage.class));
+                startActivity(new Intent(FirstPage.this, LoginPage.class));
             }
         });
         Employee.setOnClickListener(new View.OnClickListener() {

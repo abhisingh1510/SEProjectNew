@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">IFB Services</string>
+    <string-array name="status_select">
+        <item>Electrician</item>
+        <item>Plumber</item>
+        <item>Fitter</item>
+    </string-array>
 </resources>
