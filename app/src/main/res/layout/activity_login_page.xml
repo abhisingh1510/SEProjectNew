@@ -65,6 +65,7 @@
         app:layout_constraintTop_toBottomOf="@+id/register_btn" />
 
     <EditText
+        android:id="@+id/valid_up_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="24dp"

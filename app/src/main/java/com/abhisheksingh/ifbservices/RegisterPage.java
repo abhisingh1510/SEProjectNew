@@ -14,8 +14,8 @@ import android.widget.AdapterView.OnItemSelectedListener;
 public class RegisterPage extends AppCompatActivity {
 
     DatabaseHelper myDb;
-    EditText editName,editUsername,editPassword;
-    String editStatus;
+    EditText editName,editUsername,editPassword,rePassword;
+    String editStatus,pass,repass;
     Button btnRegister;
     Spinner spinnerStatus;
     @Override
@@ -27,6 +27,7 @@ public class RegisterPage extends AppCompatActivity {
         editName=(EditText)findViewById(R.id.name_text);
         editUsername=(EditText)findViewById(R.id.username_text);
         editPassword=(EditText)findViewById(R.id.password_text);
+        rePassword=(EditText)findViewById(R.id.re_password_text);
         btnRegister=(Button)findViewById(R.id.register_now_btn);
         spinnerStatus=(Spinner)findViewById(R.id.user_spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -55,18 +56,21 @@ public class RegisterPage extends AppCompatActivity {
         btnRegister.setOnClickListener(
             new View.OnClickListener(){
                 @Override
-                public void onClick(View v){
-                    boolean isInserted=myDb.insertData(editName.getText().toString(),
-                            editUsername.getText().toString(),
-                            editPassword.getText().toString(),
-                            editStatus);
-                    if(isInserted==true)
-                        Toast.makeText(RegisterPage.this,"Data Inserted",Toast.LENGTH_LONG).show();
+                public void onClick(View v) {
+                    if (editPassword.getText().toString().equals(rePassword.getText().toString())) {
+                        boolean isInserted = myDb.insertData(editName.getText().toString(),
+                                editUsername.getText().toString(),
+                                editPassword.getText().toString(),
+                                editStatus);
+                        if (isInserted == true)
+                            Toast.makeText(RegisterPage.this, "Data Inserted", Toast.LENGTH_LONG).show();
+                        else
+                            Toast.makeText(RegisterPage.this, "Data Not Inserted", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(RegisterPage.this, FirstPage.class));
+                    }
                     else
-                        Toast.makeText(RegisterPage.this,"Data Not Inserted",Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(RegisterPage.this, FirstPage.class));
+                        Toast.makeText(RegisterPage.this, "Password Do Not Match", Toast.LENGTH_LONG).show();
                 }
-
             }
 
         );
