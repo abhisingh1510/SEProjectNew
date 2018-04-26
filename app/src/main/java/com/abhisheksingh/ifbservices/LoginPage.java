@@ -19,6 +19,14 @@ public class LoginPage extends AppCompatActivity {
                 startActivity(new Intent(LoginPage.this, RegisterPage.class));
             }
         });
+        Button Login=(Button)findViewById(R.id.login_btn);
+        Login.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                //Implement Login authentication here
+                startActivity(new Intent(LoginPage.this, AdministratorPage.class));
+            }
+        });
 
     }
 }
